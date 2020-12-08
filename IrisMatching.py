@@ -16,7 +16,7 @@ def dim_reduction(feature_vector_train,feature_vector_test,components):
     
     #get the classes of all training feature vectors
     y_train=[]
-    len_ = len(glob.glob('/content/CASIA1/*'))
+    len_ = len(glob.glob('/content/Human-Identification-by-the-Iris/CASIA1/*'))
     for i in range(0, len_):
         for k in range(0,3):
             y_train.append(i + 1)
@@ -126,7 +126,7 @@ def IrisMatching(feature_vector_train,feature_vector_test,components,flag):
     
     for k in range(0,len(index_L1)):
         '''count goes from 0 to 3 because we compare the indexes obtained for the first 4 images of the test data
-        to the indexes of the first 3 images of 
+        to the indexes of the first 3 images of
         the train data (for which match is incremented by 3 everytime count exceeds the value of 3)'''
         if count<4:
             count+=1
