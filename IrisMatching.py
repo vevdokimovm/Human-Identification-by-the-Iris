@@ -16,9 +16,10 @@ def dim_reduction(feature_vector_train,feature_vector_test,components):
     
     #get the classes of all training feature vectors
     y_train=[]
-    for i in range(0,108):
+    len_ = len(glob.glob('/content/CASIA1/*'))
+    for i in range(0, len_):
         for k in range(0,3):
-            y_train.append(i+1)
+            y_train.append(i + 1)
     y_train=np.array(y_train)
     
     #fit the LDA model on training data with n components

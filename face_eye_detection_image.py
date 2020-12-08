@@ -1,17 +1,14 @@
 import numpy as np
 import cv2
 import os
+import glob
  
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
  
-path = os.walk('./Faces') # path to your current folder, you can change it 
+path = os.walk('./New_people')
  
- # adress - path to current folder
- # _ - list of paths to all directories in the current folder (adress)
- # path_ - path to every file in current folder
- 
-j = 1
+j = 0
 for address, _, path_ in path:
  
   for tmp in path_:
@@ -27,10 +24,16 @@ for address, _, path_ in path:
       for (ex,ey,ew,eh) in eyes:
           cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
           roi = roi_color[ey:ey+eh, ex:ex+ew, :]
-          if i == 0 or i == 1:
-            cv2.imwrite('Eyes/eye_{}.jpg'.format(j), roi)
-          else :
-            break
+          if i == 0:
+            len_ = len(glob.glob('/content/CASIA1/*'))
+            os.mkdir("/content/CASIA1/{}".format(len_ + 1))
+            for k in range(7):
+              if k <= 2:
+                cv2.imwrite('/content/CASIA1/{}/lol_1_{}.jpg'.format(len_ + 1, k), roi)
+              else:
+                cv2.imwrite('/content/CASIA1/{}/lol_2_{}.jpg'.format(len_ + 1, k), roi)
           i += 1
-          j += 1
-
+      j += 1
+ 
+ 
+ 
