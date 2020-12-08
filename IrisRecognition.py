@@ -24,7 +24,7 @@ warnings.filterwarnings("ignore")
 '''TRAINING'''
 
 #reading the training images from the CASIA dataset
-images_train = [cv2.imread(file) for file in sorted(glob.glob('./CASIA1/*/*_1_*.jpg'))]
+images_train = [cv2.imread(file) for file in sorted(glob.glob('./Eyes/*/*_1_*.jpg'))]
 
 #running Localization, Normalization,Enhancement and Feature Extraction on all the training images
 boundary_train,centers_train=IrisLocalization(images_train)
@@ -38,7 +38,7 @@ print("Training data processed.")
 '''TESTING'''
 
 #reading the testing images from the CASIA dataset
-images_test = [cv2.imread(file) for file in sorted(glob.glob('./CASIA1/*/*_2_*.jpg'))]
+images_test = [cv2.imread(file) for file in sorted(glob.glob('./Eyes/*/*_2_*.jpg'))]
 
 #running Localization, Normalization,Enhancement and Feature Extraction on all the testing images
 boundary_test,centers_test=IrisLocalization(images_test)
@@ -62,10 +62,10 @@ components=[10,40,60,80,90,107]
 print("Begin Matching test data with the train data")
 for comp in components:
     
-    #Running matching for all the dimensions specified in "components" 
+    #Running matching for all the dimensions specified in "components"
     comp_match_L1,comp_match_L2,comp_match_cosine,comp_match_cosine_ROC=IrisMatching(feature_vector_train,feature_vector_test,comp,0)
     
-    #Calculating CRR for all the dimensions specified in "components" 
+    #Calculating CRR for all the dimensions specified in "components"
     comp_crr_L1,comp_crr_L2,comp_crr_cosine=PerformanceEvaluation(comp_match_L1,comp_match_L2,comp_match_cosine)
     
     #combining the results of all the dimensional feature vector into one array
@@ -78,7 +78,7 @@ for comp in components:
 
 #Performing Matching and calculating CRR score for the original feature vector (without dimensionality reduction)
 orig_match_L1,orig_match_L2,orig_match_cosine,orig_match_cosine_ROC=IrisMatching(feature_vector_train,feature_vector_test,0,1)
-orig_crr_L1,orig_crr_L2,orig_crr_cosine=PerformanceEvaluation(orig_match_L1,orig_match_L2,orig_match_cosine)  
+orig_crr_L1,orig_crr_L2,orig_crr_cosine=PerformanceEvaluation(orig_match_L1,orig_match_L2,orig_match_cosine)
 print("Completed Matching")
 
 

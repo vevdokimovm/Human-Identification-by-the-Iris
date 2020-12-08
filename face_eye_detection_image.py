@@ -25,14 +25,14 @@ for address, _, path_ in path:
           cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
           roi = roi_color[ey:ey+eh, ex:ex+ew, :]
           if i == 0:
-            len_ = len(glob.glob('/content/Human-Identification-by-the-Iris/CASIA1/*'))
-            os.mkdir("/content/Human-Identification-by-the-Iris/CASIA1/{}".format(len_ + 1))
+            len_ = len(glob.glob('/content/Human-Identification-by-the-Iris/Eyes/*'))
+            os.mkdir("/content/Human-Identification-by-the-Iris/Eyes/{}".format(len_ + 1))
             for k in range(1, 4):
               photo = cv2.resize(roi, (320, 280))
-              cv2.imwrite('/content/Human-Identification-by-the-Iris/CASIA1/{}/lol_1_{}.jpg'.format(len_ + 1, k), photo)
+              cv2.imwrite('/content/Human-Identification-by-the-Iris/Eyes/{}/{}_1_{}.jpg'.format(len_ + 1, len_ + 1, k), photo)
             for k in range(1, 5):
               photo = cv2.resize(roi, (320, 280))
-              cv2.imwrite('/content/Human-Identification-by-the-Iris/CASIA1/{}/lol_2_{}.jpg'.format(len_ + 1, k), photo)
+              cv2.imwrite('/content/Human-Identification-by-the-Iris/Eyes/{}/{}_2_{}.jpg'.format(len_ + 1, len_ + 1, k), photo)
           i += 1
       j += 1
  
